@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- Import the component -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+<!-- Use it like any other HTML element -->
+<style>
+    model-viewer {
+        width: 99vw;
+        height: 80vh;
+    }
+</style>
+<style>
+
+</style>
+
+<model-viewer src="mapupper.glb"
+              ar ar-modes="webxr scene-viewer quick-look"
+              camera-controls tone-mapping="neutral"
+              poster="poster.webp"
+              shadow-intensity="1"
+              min-camera-orbit="auto 64deg 2678m"
+              max-camera-orbit="auto 64deg auto"
+              min-field-of-view="17.6deg"
+              max-field-of-view="19.00deg"
+              interaction-prompt="none"
+              camera-controls-max-distance="1000">
+</model-viewer>
+<div class="controls" id="color-controls">
+    <button data-color="#ff0000" data-number="3">1 Корпус</button>
+    <button data-color="#ff0000" data-number="4">2 Корпус</button>
+    <button data-color="#ff0000" data-number="5">3 Корпус</button>
+    <button data-color="#ff0000" data-number="6">4 Корпус</button>
+    <button data-color="#ff0000" data-number="7">5 Корпус</button>
+    <button data-color="#ff0000" data-number="8">6 Корпус</button>
+    <button data-color="#ff0000" data-number="9">7 Корпус</button>
+    <button data-color="#ff0000" data-number="10">8 Корпус</button>
+    <button data-color="#ff0000" data-number="11">9 Корпус</button>
+</div>
+<script>
+    const modelViewerColor = document.querySelector("model-viewer");
+
+    document.querySelector('#color-controls').addEventListener('click', (event) => {
+        const defaulColor = '#E7E7E7';
+        const colorString = '#820000'; // Получение цвета из атрибута data-color элемента
+        const numberCorp = event.target.dataset.number;
+
+// Получение объекта модели
+        const model = modelViewerColor.model;
+        model.materials.slice(3).forEach((num, index) => {
+            if(index == numberCorp){
+                const material = model.materials[numberCorp];
+                material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+            }
+            const material = model.materials[3+index];
+            material.pbrMetallicRoughness.setBaseColorFactor(defaulColor);
+        });
+
+
+// Получение материала с индексом 1 (считая с нуля)
+        const material = model.materials[numberCorp];
+
+// Установка цвета материала
+        material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+    });
+</script>
+</body>
+</html>
