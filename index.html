@@ -21,55 +21,69 @@
 <style>
 
 </style>
-
+<!--1813m-->
 <model-viewer src="mapupper.glb"
               ar ar-modes="webxr scene-viewer quick-look"
               camera-controls tone-mapping="neutral"
               poster="poster.webp"
               shadow-intensity="1"
-              min-camera-orbit="auto 64deg 2678m"
+              camera-orbit="63deg 63deg 2897m"
+              min-camera-orbit="auto 64deg auto"
               max-camera-orbit="auto 64deg auto"
               min-field-of-view="17.6deg"
               max-field-of-view="19.00deg"
               interaction-prompt="none"
-              camera-controls-max-distance="1000">
+              camera-controls-max-distance="1000"
+              animation-name="transition"
+              animation-duration="3s"
+              animation-iteration-count="infinite"
+              animation-timing-function="linear">
 </model-viewer>
 <div class="controls" id="color-controls">
-    <button data-color="#ff0000" data-number="3">1 Корпус</button>
-    <button data-color="#ff0000" data-number="4">2 Корпус</button>
-    <button data-color="#ff0000" data-number="5">3 Корпус</button>
-    <button data-color="#ff0000" data-number="6">4 Корпус</button>
-    <button data-color="#ff0000" data-number="7">5 Корпус</button>
-    <button data-color="#ff0000" data-number="8">6 Корпус</button>
-    <button data-color="#ff0000" data-number="9">7 Корпус</button>
-    <button data-color="#ff0000" data-number="10">8 Корпус</button>
-    <button data-color="#ff0000" data-number="11">9 Корпус</button>
+    <button data-color="#ff0000" data-number="3" data-target="-130.34834195553856m 17.97612215730055m 129.26816007222442m">1 Корпус</button>
+    <button data-color="#ff0000" data-number="4" data-target="-3.520751083803134m 41.94272634572599m 82.58204129968681m">2 Корпус</button>
+    <button data-color="#ff0000" data-number="5" data-target="-236.1108817742404m 21.812103823032885m 74.72465288584567m">3 Корпус</button>
+    <button data-color="#ff0000" data-number="6" data-target="-269.5031515287287m 22.813165625814463m 170.2622274924447m">4 Корпус</button>
+    <button data-color="#ff0000" data-number="7" data-target="-267.74369663249354m 32.26295375823952m 278.8691107842974m">5 Корпус</button>
+    <button data-color="#ff0000" data-number="8" data-target="321.28816522696434m 42.312450198118995m -366.9076335046436m">6 Корпус</button>
+    <button data-color="#ff0000" data-number="9" data-target="-203.13180330911428m 21.648845174775943m 281.6321494049698m">7 Корпус</button>
+    <button data-color="#ff0000" data-number="10" data-target="-441.70355891025224m 19.21340881275387m 396.3722198968876m">8 Корпус</button>
+    <button data-color="#ff0000" data-number="11" data-target="-126.48726307935794m 21.414528472933853m 314.0929795555512m">9 Корпус</button>
 </div>
 <script>
     const modelViewerColor = document.querySelector("model-viewer");
-
-    document.querySelector('#color-controls').addEventListener('click', (event) => {
-        const defaulColor = '#E7E7E7';
-        const colorString = '#820000'; // Получение цвета из атрибута data-color элемента
-        const numberCorp = event.target.dataset.number;
+    modelViewerColor.addEventListener('load', () => {
+        document.querySelector('#color-controls').addEventListener('click', (event) => {
+            const defaulColor = '#E7E7E7';
+            const colorString = '#820000'; // Получение цвета из атрибута data-color элемента
+            const numberCorp = event.target.dataset.number;
+            const targetCoords = event.target.dataset.target;
 
 // Получение объекта модели
-        const model = modelViewerColor.model;
-        model.materials.slice(3).forEach((num, index) => {
-            if(index == numberCorp){
-                const material = model.materials[numberCorp];
-                material.pbrMetallicRoughness.setBaseColorFactor(colorString);
-            }
-            const material = model.materials[3+index];
-            material.pbrMetallicRoughness.setBaseColorFactor(defaulColor);
-        });
+            const model = modelViewerColor.model;
+            model.materials.slice(3).forEach((num, index) => {
+                if (index == numberCorp) {
+                    const material = model.materials[numberCorp];
+                    material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+                    modelViewerColor.setAttribute('camera-target', targetCoords);
+                    modelViewerColor.setAttribute('camera-orbit', '63deg 63deg 2897m');
+                    modelViewerColor.setAttribute('camera-orbit', '63deg 63deg 1000m');
+                }
+                const material = model.materials[3 + index];
+                material.pbrMetallicRoughness.setBaseColorFactor(defaulColor);
+            });
 
 
 // Получение материала с индексом 1 (считая с нуля)
-        const material = model.materials[numberCorp];
+            if  (numberCorp == 9 || numberCorp == 10 || numberCorp == 11) {
+                modelViewerColor.setAttribute('camera-target', targetCoords);modelViewerColor.setAttribute('camera-orbit', '63deg 63deg 1000m');
+            }
+
+            const material = model.materials[numberCorp];
 
 // Установка цвета материала
-        material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+            material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+        });
     });
 </script>
 </body>
