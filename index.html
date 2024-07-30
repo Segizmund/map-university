@@ -78,7 +78,7 @@
               shadow-intensity="1"
               camera-orbit="63deg 63deg 2897m"
               min-camera-orbit="auto 64deg auto"
-              max-camera-orbit="auto 64deg auto"
+              max-camera-orbit="auto 64deg 2897m"
 
               max-field-of-view="19.00deg"
               interaction-prompt="none"
@@ -138,6 +138,11 @@
     const modelViewerColor = document.querySelector("model-viewer");
     modelViewerColor.addEventListener('load', () => {
         document.querySelector('#color-controls').addEventListener('click', (event) => {
+            if (event.target.closest('#color-controls button') === null){
+                modelViewerColor.setAttribute('camera-orbit', '63deg 63deg 2897m');
+                modelViewerColor.setAttribute('field-of-view', '50deg');
+                modelViewerColor.setAttribute('camera-target', '0 0 0');
+            }
             const defaulColor = '#E7E7E7';
             const colorString = '#820000'; // Получение цвета из атрибута data-color элемента
             const numberCorp = event.target.dataset.number;
