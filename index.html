@@ -39,6 +39,7 @@
     }
     .controls::-webkit-scrollbar {
         height: 0px !important;/* ширина scrollbar */
+
     }
     .controls::-webkit-scrollbar-track {
         background: transparent; /* цвет дорожки */
@@ -97,7 +98,12 @@
     .HotspotAnnotation h3{
         border-bottom: 1px solid black;
     }
-    @media screen and (max-width: )
+    @media screen and (width < 1320px){
+        .controls::-webkit-scrollbar {
+            height: 3px !important;/* ширина scrollbar */
+
+        }
+    }
 </style>
 <!--1813m-->
 <model-viewer src="mapupper.glb"
