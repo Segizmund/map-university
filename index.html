@@ -6,18 +6,28 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Карта Кампуса</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-<!-- Import the component -->
+
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 
-<!-- Use it like any other HTML element -->
 <style>
     body{
         background-color: white;
         max-width: 1320px;
         margin: 0 auto;
         min-height: 100vh;
+    }
+    h3{
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold !important;
+    }
+    p{
+        margin: 0;
+        font-size: 14px;
+        font-weight: normal !important;
     }
     model-viewer {
         width: 100%;
@@ -54,10 +64,12 @@
         background-color: #820000;
         color: #FFFFFF;
         border: 1px solid #820000;
+        font-size: 16px;
+        font-weight: bold;
         border-radius: 15px;
-        padding: 24px;
+        padding: 24px 12px;
         transition: .3s linear;
-        margin: 0 10px;
+        margin: 0 5px;
     }
     .controls button:hover,.controls button:active,.controls button:focus{
         background-color: #FFFFFF;
@@ -95,6 +107,16 @@
         top: 50%;
         width: max-content;
     }
+    .nav-link{
+        color: #820000;
+    }
+    .nav-link.active{
+        background-color: #820000 !important;
+        color: #FFFFFF !important;
+    }
+    .nav-link:hover{
+        color: #c10f1a;
+    }
     .HotspotAnnotation h3{
         border-bottom: 1px solid black;
     }
@@ -106,124 +128,135 @@
     }
 </style>
 <!--1813m-->
-<model-viewer src="mapupper.glb"
-              ar ar-modes="webxr scene-viewer quick-look"
-              camera-controls tone-mapping="neutral"
-              shadow-intensity="1"
-              camera-orbit="63deg 63deg 2897m"
-              min-camera-orbit="auto 64deg auto"
-              max-camera-orbit="auto 64deg 2897m"
+<nav class="nav nav-pills d-flex justify-content-center p-2" id="pills-tab" role="tablist">
+    <a class="nav-link active" id="pills-upper-tab" data-bs-toggle="pill" href="#pills-upper" role="tab" aria-controls="pills-upper" aria-selected="true">Верхняя полщадка</a>
+    <a class="nav-link" id="pills-lower-tab" data-bs-toggle="pill" href="#pills-lower" role="tab" aria-controls="pills-lower" aria-selected="false">Нижняя полщадка</a>
+</nav>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-upper" role="tabpanel" aria-labelledby="pills-upper-tab">
+        <model-viewer src="mapupper.glb"
+                      ar ar-modes="webxr scene-viewer quick-look"
+                      camera-controls tone-mapping="neutral"
+                      shadow-intensity="1"
+                      camera-orbit="63deg 63deg 2897m"
+                      min-camera-orbit="auto 64deg auto"
+                      max-camera-orbit="auto 64deg 2897m"
 
-              max-field-of-view="19.00deg"
-              interaction-prompt="none"
-              camera-controls-max-distance="1000"
-              animation-name="transition"
-              animation-duration="3s"
-              animation-iteration-count="infinite"
-              animation-timing-function="linear">
-    <button class="Hotspot" slot="hotspot-1" data-number="3" data-position="-135.54964110639162m 28.365121841430664m 126.13139063638573m" data-normal="0m 1m 0m" >
-        <div class="HotspotAnnotation">
-            <h3>Главный корпус МелГУ</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18
-            </p>
+                      max-field-of-view="19.00deg"
+                      interaction-prompt="none"
+                      camera-controls-max-distance="1000"
+                      animation-name="transition"
+                      animation-duration="3s"
+                      animation-iteration-count="infinite"
+                      animation-timing-function="linear">
+            <button class="Hotspot" slot="hotspot-1" data-number="3" data-position="-135.54964110639162m 28.365121841430664m 126.13139063638573m" data-normal="0m 1m 0m" >
+                <div class="HotspotAnnotation">
+                    <h3>Главный корпус МелГУ</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-2" data-number="11" data-position="-16.955696683184442m 79.36314392089832m 72.07880329796126m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>Учебный корпус №2</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18/1
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-3" data-number="12" data-position="-142.8022065636025m 26.999999046325684m 6.880727952636789m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>ЦКИД</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18/1
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-4" data-number="13" data-position="-176.45160266806698m 26.999999046325797m -15.33200069798113m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    Библиотека
+                    <h3>Библиотека</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18/1
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-5" data-number="4" data-position="-248.7463941355811m 41.64064788818371m 68.82098649260786m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>Учебный корпус №3</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-6" data-number="5" data-position="-275.3589247249122m 42.061580657958984m 170.88780334369346m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>Учебный корпус №4</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-7" data-number="6" data-position="-286.81292991693795m 32.26295375823986m 264.45644148872697m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>Учебный корпус №5</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-8" data-number="8" data-position="-210.0698252650227m 23.541641235351676m 274.05343475535653m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>Учебный корпус №7</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-9" data-number="10" data-position="-133.70807767241627m 31.09749603271473m 306.0291124304871m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>Учебный корпус №9</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 18
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-10" data-number="9" data-position="-450.74364418425785m 34.19498062133789m 390.67262211237164m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>Учебный корпус №8</h3>
+                    <p>
+                        улица Бейбулатова, 2
+                    </p>
+                </div>
+            </button>
+            <button class="Hotspot" slot="hotspot-11" data-number="7" data-position="315.68677801795366m 55.094314575195426m -387.04443964075983m" data-normal="0m 1m 0m">
+                <div class="HotspotAnnotation">
+                    <h3>Спортивный комплекс</h3>
+                    <p>
+                        Проспект Б. Хмельницкого, 1
+                    </p>
+                </div>
+            </button>
+        </model-viewer>
+        <div class="controls" id="color-controls">
+            <button data-color="#ff0000" data-number="3" data-target="-130.34834195553856m 17.97612215730055m 129.26816007222442m">1 Корпус</button>
+            <button data-color="#ff0000" data-number="11" data-target="-3.520751083803134m 41.94272634572599m 82.58204129968681m">2 Корпус</button>
+            <button data-color="#ff0000" data-number="4" data-target="-236.1108817742404m 21.812103823032885m 74.72465288584567m">3 Корпус</button>
+            <button data-color="#ff0000" data-number="5" data-target="-269.5031515287287m 22.813165625814463m 170.2622274924447m">4 Корпус</button>
+            <button data-color="#ff0000" data-number="6" data-target="-267.74369663249354m 32.26295375823952m 278.8691107842974m">5 Корпус</button>
+            <button data-color="#ff0000" data-number="7" data-target="321.28816522696434m 42.312450198118995m -366.9076335046436m">Спортивный комплекс</button>
+            <button data-color="#ff0000" data-number="8" data-target="-203.13180330911428m 21.648845174775943m 281.6321494049698m">7 Корпус</button>
+            <button data-color="#ff0000" data-number="9" data-target="-441.70355891025224m 19.21340881275387m 396.3722198968876m">8 Корпус</button>
+            <button data-color="#ff0000" data-number="10" data-target="-126.48726307935794m 21.414528472933853m 314.0929795555512m">9 Корпус</button>
+            <button data-color="#ff0000" data-number="12" data-target="-143.1692074138997m 26.999999046325684m 9.237334052656934m">ЦКИД</button>
+            <button data-color="#ff0000" data-number="13" data-target="-179.01868011820142m 26.999999046325684m -12.243845331450075m">Библиотека</button>
         </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-2" data-number="11" data-position="-16.955696683184442m 79.36314392089832m 72.07880329796126m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>Учебный корпус №2</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18/1
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-3" data-number="12" data-position="-142.8022065636025m 26.999999046325684m 6.880727952636789m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>ЦКИД</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18/1
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-4" data-number="13" data-position="-176.45160266806698m 26.999999046325797m -15.33200069798113m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            Библиотека
-            <h3>Библиотека</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18/1
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-5" data-number="4" data-position="-248.7463941355811m 41.64064788818371m 68.82098649260786m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>Учебный корпус №3</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-6" data-number="5" data-position="-275.3589247249122m 42.061580657958984m 170.88780334369346m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>Учебный корпус №4</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-7" data-number="6" data-position="-286.81292991693795m 32.26295375823986m 264.45644148872697m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>Учебный корпус №5</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-8" data-number="8" data-position="-210.0698252650227m 23.541641235351676m 274.05343475535653m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>Учебный корпус №7</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-9" data-number="10" data-position="-133.70807767241627m 31.09749603271473m 306.0291124304871m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>Учебный корпус №9</h3>
-            <p>
-                Проспект Б. Хмельницкого, 18
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-10" data-number="9" data-position="-450.74364418425785m 34.19498062133789m 390.67262211237164m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>Учебный корпус №8</h3>
-            <p>
-                улица Бейбулатова, 2
-            </p>
-        </div>
-    </button>
-    <button class="Hotspot" slot="hotspot-11" data-number="7" data-position="315.68677801795366m 55.094314575195426m -387.04443964075983m" data-normal="0m 1m 0m">
-        <div class="HotspotAnnotation">
-            <h3>Спортивный комплекс</h3>
-            <p>
-                Проспект Б. Хмельницкого, 1
-            </p>
-        </div>
-    </button>
-</model-viewer>
-    <div class="controls" id="color-controls">
-        <button data-color="#ff0000" data-number="3" data-target="-130.34834195553856m 17.97612215730055m 129.26816007222442m">1 Корпус</button>
-        <button data-color="#ff0000" data-number="11" data-target="-3.520751083803134m 41.94272634572599m 82.58204129968681m">2 Корпус</button>
-        <button data-color="#ff0000" data-number="4" data-target="-236.1108817742404m 21.812103823032885m 74.72465288584567m">3 Корпус</button>
-        <button data-color="#ff0000" data-number="5" data-target="-269.5031515287287m 22.813165625814463m 170.2622274924447m">4 Корпус</button>
-        <button data-color="#ff0000" data-number="6" data-target="-267.74369663249354m 32.26295375823952m 278.8691107842974m">5 Корпус</button>
-        <button data-color="#ff0000" data-number="7" data-target="321.28816522696434m 42.312450198118995m -366.9076335046436m">Спортивный комплекс</button>
-        <button data-color="#ff0000" data-number="8" data-target="-203.13180330911428m 21.648845174775943m 281.6321494049698m">7 Корпус</button>
-        <button data-color="#ff0000" data-number="9" data-target="-441.70355891025224m 19.21340881275387m 396.3722198968876m">8 Корпус</button>
-        <button data-color="#ff0000" data-number="10" data-target="-126.48726307935794m 21.414528472933853m 314.0929795555512m">9 Корпус</button>
-        <button data-color="#ff0000" data-number="12" data-target="-143.1692074138997m 26.999999046325684m 9.237334052656934m">ЦКИД</button>
-        <button data-color="#ff0000" data-number="13" data-target="-179.01868011820142m 26.999999046325684m -12.243845331450075m">Библиотека</button>
     </div>
+    <div class="tab-pane fade" id="pills-lower" role="tabpanel" aria-labelledby="pills-lower-tab">
+
+    </div>
+</div>
 <script>
     const modelViewerColor = document.querySelector("model-viewer");
     modelViewerColor.addEventListener('load', () => {
@@ -277,5 +310,7 @@
         });
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
 </html>
