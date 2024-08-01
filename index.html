@@ -452,6 +452,27 @@
         });
     });
 </script>
+<script>
+    const upperLink = document.getElementById("pills-upper-tab");
+    const lowerLink = document.getElementById("pills-lower-tab");
+
+    upperLink.addEventListener("click", showUpperPlatform);
+    lowerLink.addEventListener("click", showLowerPlatform);
+    function showUpperPlatform() {
+        // Код, который нужно выполнить при клике на "Верхняя площадка"
+        console.log("Показать верхнюю площадку"); // Пример: вывести сообщение в консоль
+        modelViewerColor.setAttribute('camera-orbit', '63deg 63deg 2897m');
+        modelViewerColor.setAttribute('field-of-view', '50deg');
+        modelViewerColor.setAttribute('camera-target', '0 0 0');
+    }
+
+    function showLowerPlatform() {
+        // Код, который нужно выполнить при клике на "Нижняя площадка"
+        modelViewerColor2.setAttribute('camera-orbit', '63deg 63deg 2897m');
+        modelViewerColor2.setAttribute('field-of-view', '50deg');
+        modelViewerColor2.setAttribute('camera-target', '0 0 0');
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
