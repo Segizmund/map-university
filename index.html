@@ -134,7 +134,7 @@
 </nav>
 <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-upper" role="tabpanel" aria-labelledby="pills-upper-tab">
-        <model-viewer src="mapupper.glb"
+        <model-viewer class="uppermap" src="mapupper.glb"
                       ar ar-modes="webxr scene-viewer quick-look"
                       camera-controls tone-mapping="neutral"
                       shadow-intensity="1"
@@ -239,7 +239,7 @@
                 </div>
             </button>
         </model-viewer>
-        <div class="controls" id="color-controls">
+        <div class="controls" id="color-controls-upper">
             <button data-color="#ff0000" data-number="3" data-target="-130.34834195553856m 17.97612215730055m 129.26816007222442m">1 Корпус</button>
             <button data-color="#ff0000" data-number="11" data-target="-3.520751083803134m 41.94272634572599m 82.58204129968681m">2 Корпус</button>
             <button data-color="#ff0000" data-number="4" data-target="-236.1108817742404m 21.812103823032885m 74.72465288584567m">3 Корпус</button>
@@ -253,31 +253,71 @@
             <button data-color="#ff0000" data-number="13" data-target="-179.01868011820142m 26.999999046325684m -12.243845331450075m">Библиотека</button>
         </div>
     </div>
-    <div class="tab-pane fade" id="pills-lower" role="tabpanel" aria-labelledby="pills-lower-tab">
 
+
+    <div class="tab-pane fade" id="pills-lower" role="tabpanel" aria-labelledby="pills-lower-tab">
+        <model-viewer class="lowermap" src="lowermap.glb"
+                      ar ar-modes="webxr scene-viewer quick-look"
+                      camera-controls tone-mapping="neutral"
+                      shadow-intensity="1"
+                      camera-orbit="63deg 63deg 2897m"
+                      min-camera-orbit="auto 64deg auto"
+                      max-camera-orbit="auto 64deg 2897m"
+
+                      max-field-of-view="19.00deg"
+                      interaction-prompt="none"
+                      camera-controls-max-distance="1000"
+                      animation-name="transition"
+                      animation-duration="3s"
+                      animation-iteration-count="infinite"
+                      animation-timing-function="linear">
+            <button class="Hotspot" data-number="3" slot="hotspot-1" data-position="-720.9178733781449m 19.999999999999886m 14.24501744438976m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">фывфыв</div>
+            </button>
+            <button class="Hotspot" data-number="4" slot="hotspot-2" data-position="-184.1960234814659m 19.999999999999886m 29.943975597837607m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">фывфывфыв</div>
+            </button>
+            <button class="Hotspot" data-number="5" slot="hotspot-3" data-position="-320.06215509115566m 19.999999999999886m -405.7060974292333m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">123123</div>
+            </button>
+            <button class="Hotspot" data-number="6" slot="hotspot-4" data-position="-274.042664079015m 20m -571.1063831121198m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">яяяяяя</div>
+            </button>
+            <button class="Hotspot" data-number="7" slot="hotspot-6" data-position="73.0773362900801m 9m 456.7849379656236m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">йййййй</div>
+            </button>
+        </model-viewer>
+        <div class="controls" id="color-controls-lower">
+            <button data-color="#ff0000" data-number="3" data-target="-697.566m 6.25961m 10m">1 Корпус</button>
+            <button data-color="#ff0000" data-number="4" data-target="-173.627m 11.4493m 10m">2 Корпус</button>
+            <button data-color="#ff0000" data-number="5" data-target="-327.2412743589771m 20m -401.61960755326186m">3 Корпус</button>
+            <button data-color="#ff0000" data-number="6" data-target="-273.65232394538816m 20.000000000000227m -568.3856925390187m">4 Корпус</button>
+            <button data-color="#ff0000" data-number="7" data-target="69.47046659759894m 9m 456.6572485892457m">5 Корпус</button>
+        </div>
     </div>
 </div>
 <script>
-    const modelViewerColor = document.querySelector("model-viewer");
+    const modelViewerColor = document.querySelector("model-viewer.uppermap");
     modelViewerColor.addEventListener('load', () => {
-        document.querySelector('#color-controls').addEventListener('click', (event) => {
-            if (event.target.closest('#color-controls button') === null){
+        document.querySelector('#color-controls-upper').addEventListener('click', (event) => {
+            if (event.target.closest('#color-controls-upper button') === null){
                 modelViewerColor.setAttribute('camera-orbit', '63deg 63deg 2897m');
                 modelViewerColor.setAttribute('field-of-view', '50deg');
                 modelViewerColor.setAttribute('camera-target', '0 0 0');
             }
+            console.log('asdasd');
             const defaulColor = '#E7E7E7';
             const colorString = '#820000'; // Получение цвета из атрибута data-color элемента
             const numberCorp = event.target.dataset.number;
             const targetCoords = event.target.dataset.target;
-            let descrip = document.querySelectorAll('model-viewer button');
+            let descrip = document.querySelectorAll('model-viewer.uppermap button');
             descrip.forEach((e,index)=>{
                 if(e.dataset.number == numberCorp){
-                    let a = document.querySelector(`model-viewer button[data-number="${numberCorp}"]`);
+                    let a = document.querySelector(`model-viewer.uppermap button[data-number="${numberCorp}"]`);
                     a.style.display = 'block';
                 }
                 else {
-                    let a = document.querySelector(`model-viewer button[data-number="${e.dataset.number}"]`);
+                    let a = document.querySelector(`model-viewer.uppermap button[data-number="${e.dataset.number}"]`);
                     a.style.display = 'none';
                 }
             });
@@ -302,6 +342,75 @@
                 modelViewerColor.setAttribute('camera-target', targetCoords);
                 modelViewerColor.setAttribute('camera-orbit', '30deg 63deg 1000m');
                 modelViewerColor.setAttribute('field-of-view', '10deg');
+            }
+            const material = model.materials[numberCorp];
+
+// Установка цвета материала
+            material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+        });
+    });
+</script>
+<script>
+    // Скрипт второй карты
+    const modelViewerColor2 = document.querySelector("model-viewer.lowermap");
+    modelViewerColor2.addEventListener('load', () => {
+        document.querySelector('#color-controls-lower').addEventListener('click', (event) => {
+            if (event.target.closest('#color-controls-lower button') === null){
+                modelViewerColor2.setAttribute('camera-orbit', '63deg 63deg 2897m');
+                modelViewerColor2.setAttribute('field-of-view', '50deg');
+                modelViewerColor2.setAttribute('camera-target', '0 0 0');
+            }
+            const defaulColor = '#E7E7E7';
+            const colorString = '#820000';
+            const numberCorp = event.target.dataset.number;
+            const targetCoords = event.target.dataset.target;
+            let descrip = document.querySelectorAll('model-viewer.lowermap button');
+            descrip.forEach((e,index)=>{
+                if(e.dataset.number == numberCorp){
+                    let a = document.querySelector(`model-viewer.lowermap button[data-number="${numberCorp}"]`);
+                    a.style.display = 'block';
+                }
+                else {
+                    let a = document.querySelector(`model-viewer.lowermap button[data-number="${e.dataset.number}"]`);
+                    a.style.display = 'none';
+                }
+            });
+
+// Получение объекта модели
+            const model = modelViewerColor2.model;
+            model.materials.slice(3).forEach((num, index) => {
+                if(numberCorp == 4){
+                    modelViewerColor2.setAttribute('camera-target', targetCoords);
+                    modelViewerColor2.setAttribute('camera-orbit', '-40deg 63deg 1000m');
+                    modelViewerColor2.setAttribute('field-of-view', '10deg');
+                }
+                else if (index == numberCorp){
+                    const material = model.materials[numberCorp];
+                    material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+                    modelViewerColor2.setAttribute('camera-target', targetCoords);
+                    modelViewerColor2.setAttribute('camera-orbit', '30deg 63deg 1000m');
+                    modelViewerColor2.setAttribute('field-of-view', '10deg');
+                }
+                else {const material = model.materials[3 + index];
+                material.pbrMetallicRoughness.setBaseColorFactor(defaulColor);}
+            });
+
+
+// Получение материала с индексом 1 (считая с нуля)
+            if  (numberCorp == 5) {
+                modelViewerColor2.setAttribute('camera-target', targetCoords);
+                modelViewerColor2.setAttribute('camera-orbit', '30deg 63deg 1000m');
+                modelViewerColor2.setAttribute('field-of-view', '10deg');
+            }
+            if  (numberCorp == 6) {
+                modelViewerColor2.setAttribute('camera-target', targetCoords);
+                modelViewerColor2.setAttribute('camera-orbit', '-50deg 63deg 1000m');
+                modelViewerColor2.setAttribute('field-of-view', '10deg');
+            }
+            if  (numberCorp == 7) {
+                modelViewerColor2.setAttribute('camera-target', targetCoords);
+                modelViewerColor2.setAttribute('camera-orbit', '-160deg 63deg 1000m');
+                modelViewerColor2.setAttribute('field-of-view', '10deg');
             }
             const material = model.materials[numberCorp];
 
