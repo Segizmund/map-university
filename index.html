@@ -281,41 +281,41 @@
                       animation-timing-function="linear">
             <button class="Hotspot" data-number="3" slot="hotspot-1" data-position="-720.9178733781449m 19.999999999999886m 14.24501744438976m" data-normal="0m 1m 0m">
                 <div class="HotspotAnnotation lower">
-                    <h3>Главный корпус МелГУ</h3>
+                    <h3>Главный корпус нижней площадки </h3>
                     <p>
-                        Проспект Б. Хмельницкого, 18
+                        улица Ленина, 20
                     </p>
                 </div>
             </button>
             <button class="Hotspot" data-number="4" slot="hotspot-2" data-position="-184.1960234814659m 19.999999999999886m 29.943975597837607m" data-normal="0m 1m 0m">
                 <div class="HotspotAnnotation lower">
-                    <h3>Главный корпус МелГУ</h3>
+                    <h3>Учебный корпус №2</h3>
                     <p>
-                        Проспект Б. Хмельницкого, 18
+                        улица Ленина, 10
                     </p>
                 </div>
             </button>
             <button class="Hotspot" data-number="5" slot="hotspot-3" data-position="-320.06215509115566m 19.999999999999886m -405.7060974292333m" data-normal="0m 1m 0m">
                 <div class="HotspotAnnotation lower">
-                    <h3>Главный корпус МелГУ</h3>
+                    <h3>Учебный корпус №3</h3>
                     <p>
-                        Проспект Б. Хмельницкого, 18
+                        улица Карла Маркса, 19
                     </p>
                 </div>
             </button>
             <button class="Hotspot" data-number="6" slot="hotspot-4" data-position="-274.042664079015m 20m -571.1063831121198m" data-normal="0m 1m 0m">
                 <div class="HotspotAnnotation lower">
-                    <h3>Главный корпус МелГУ</h3>
+                    <h3>Учебный корпус №4</h3>
                     <p>
-                        Проспект Б. Хмельницкого, 18
+                        улица Екатерины Великой
                     </p>
                 </div>
             </button>
             <button class="Hotspot" data-number="7" slot="hotspot-6" data-position="73.0773362900801m 9m 456.7849379656236m" data-normal="0m 1m 0m">
                 <div class="HotspotAnnotation lower">
-                    <h3>Главный корпус МелГУ</h3>
+                    <h3>Учебный корпус №5</h3>
                     <p>
-                        Проспект Б. Хмельницкого, 18
+                        улица Александра Невского, 67
                     </p>
                 </div>
             </button>
@@ -382,8 +382,7 @@
             material.pbrMetallicRoughness.setBaseColorFactor(colorString);
         });
     });
-</script>
-<script>
+
     // Скрипт второй карты
     const modelViewerColor2 = document.querySelector("model-viewer.lowermap");
     modelViewerColor2.addEventListener('load', () => {
@@ -425,7 +424,7 @@
                     modelViewerColor2.setAttribute('field-of-view', '10deg');
                 }
                 else {const material = model.materials[3 + index];
-                material.pbrMetallicRoughness.setBaseColorFactor(defaulColor);}
+                    material.pbrMetallicRoughness.setBaseColorFactor(defaulColor);}
             });
 
 
@@ -451,26 +450,51 @@
             material.pbrMetallicRoughness.setBaseColorFactor(colorString);
         });
     });
-</script>
-<script>
+
     const upperLink = document.getElementById("pills-upper-tab");
     const lowerLink = document.getElementById("pills-lower-tab");
 
-    upperLink.addEventListener("click", showUpperPlatform);
-    lowerLink.addEventListener("click", showLowerPlatform);
+    let timeout;
+    upperLink.addEventListener("click", function(event) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            showUpperPlatform();
+        }, 100); // Задержка 300 миллисекунд
+    });
+    lowerLink.addEventListener("click", function(event) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            showLowerPlatform();
+        }, 100); // Задержка 300 миллисекунд
+    });
     function showUpperPlatform() {
-        // Код, который нужно выполнить при клике на "Верхняя площадка"
-        console.log("Показать верхнюю площадку"); // Пример: вывести сообщение в консоль
-        modelViewerColor.setAttribute('camera-orbit', '63deg 63deg 2897m');
-        modelViewerColor.setAttribute('field-of-view', '50deg');
-        modelViewerColor.setAttribute('camera-target', '0 0 0');
+        const model = modelViewerColor.model;
+        model.materials.slice(3).forEach((num, index) => {
+            const material = model.materials[3 + index];
+            material.pbrMetallicRoughness.setBaseColorFactor('#E7E7E7');
+            modelViewerColor.setAttribute('camera-orbit', '63deg 63deg 2897m');
+            modelViewerColor.setAttribute('field-of-view', '50deg');
+            modelViewerColor.setAttribute('camera-target', '0 0 0');
+        });
+        let descrip = document.querySelectorAll('model-viewer.uppermap button');
+        for (i = 0; i< descrip.length;i++){
+            descrip[i].style.display = 'none';
+        }
     }
 
     function showLowerPlatform() {
-        // Код, который нужно выполнить при клике на "Нижняя площадка"
-        modelViewerColor2.setAttribute('camera-orbit', '63deg 63deg 2897m');
-        modelViewerColor2.setAttribute('field-of-view', '50deg');
-        modelViewerColor2.setAttribute('camera-target', '0 0 0');
+        const model = modelViewerColor2.model;
+        model.materials.slice(3).forEach((num, index) => {
+            const material = model.materials[3 + index];
+            material.pbrMetallicRoughness.setBaseColorFactor('#E7E7E7');
+            modelViewerColor2.setAttribute('camera-orbit', '63deg 63deg 2897m');
+            modelViewerColor2.setAttribute('field-of-view', '50deg');
+            modelViewerColor2.setAttribute('camera-target', '0 0 0');
+        });
+        let descrip = document.querySelectorAll('model-viewer.lowermap button');
+        for (i = 0; i< descrip.length;i++){
+            descrip[i].style.display = 'none';
+        }
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
